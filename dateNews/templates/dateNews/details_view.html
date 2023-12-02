@@ -1,0 +1,42 @@
+{% extends 'main/layout.html' %}
+
+{% block title %}
+    <title>{{ article.title }}</title>
+{% endblock %}
+
+{% block content %}
+    <div class="features">
+        
+        <h1 class="new__title">{{ article.title }}</h1>
+        <p class="new__date">{{ article.date }}</p>
+        <p class="new__text">{{ article.full_text }}</p>
+        
+
+
+        <div class="features__form">
+            <h1>Добавить Комментарий</h1>
+            <div class="form__con">
+                <form method="POST">
+                    {% csrf_token %}
+                    {{ form.name }}
+                    {{ form.full_text }}
+                    <button class="form__button" type="submit">Добавить</button>
+                </form>
+            </div>
+        </div>
+
+        <h1>Комментарии</h1>
+
+        {% for el in article.comments_article.all %}
+
+        <div class="comment">
+            <p class="name">{{ el.name }}:</p>
+            <p class="full_text">{{ el.full_text }}</p>
+        </div>
+
+
+        {% endfor %}
+    </div>
+
+    
+{% endblock %}

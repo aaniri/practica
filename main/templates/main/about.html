@@ -1,0 +1,24 @@
+{% extends 'main/layout.html' %}
+{% load static %}
+
+
+{% block title %}
+    <title>Наши контакты</title>
+{% endblock %}
+
+{% block content %}
+    <div class="features">
+        <h1 class="main__title">Хотите попасть к нам?</h1>
+        <p class="main__text">Оставьте свою заявку ниже или позвоните прямо сейчас на телефон +9999999 </p>
+        <div class="form__con">
+            <form method="POST">
+                {% csrf_token %}
+                {{form.name}}
+                {{form.age}}
+                {{form.tel}}
+                <p>Мы вам обязательно перезвоним</p>
+                <button class="form__button" type="submit">Оставить заявку</button>
+            </form>
+        </div>
+    </div>
+{% endblock %}

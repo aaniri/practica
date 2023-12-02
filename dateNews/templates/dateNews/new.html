@@ -1,0 +1,32 @@
+{% extends 'main/layout.html' %}
+
+{% block title %}
+    <title>Новости Академии</title>
+{% endblock %}
+
+{% block content %}
+    <div class="features">
+        <h1 class="title__mainNew">Самые свежие новости Академии урала!</h1>
+        {% if news %}
+            {% for el in news %}
+            <a href="{% url 'news-detail' el.id %}">
+                <div class="anons_con">
+                        <h3 class="anons_title">
+                            {{ el.title }}
+                        </h3>
+                        <p class="anons_text">
+                            {{ el.anons }}
+                        </p>
+                </div>
+            </a>
+            {%  endfor%}
+        {% else %}
+            <p>Тут пока-что нет записей</p>
+        {% endif %}
+        
+        <div class="create">
+            <h2>Хотите добавить новость?</h2>
+            <a href="{% url 'create' %}">Добавить новость</a>
+        </div>
+    </div>
+{% endblock %}
